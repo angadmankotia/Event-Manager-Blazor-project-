@@ -1,0 +1,18 @@
+@page "/attendance"
+@inject AppState AppState
+
+<h3>Attendance Tracker</h3>
+
+@if (AppState.Attendees.Count == 0)
+{
+    <p>No attendees yet.</p>
+}
+else
+{
+    <ul>
+        @foreach (var attendee in AppState.Attendees)
+        {
+            <li>@attendee</li>
+        }
+    </ul>
+}

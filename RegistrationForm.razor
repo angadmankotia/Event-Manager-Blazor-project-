@@ -1,0 +1,41 @@
+@page "/register"
+@inject AppState AppState
+
+<h3>Event Registration</h3>
+
+<EditForm Model="@formData" OnValidSubmit="HandleSubmit">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <label>Name:</label>
+    <InputText @bind-Value="formData.Name" />
+    <ValidationMessage For="@(() => formData.Name)" />
+
+    <label>Email:</label>
+    <InputText @bind-Value="formData.Email" />
+    <ValidationMessage For="@(() => formData.Email)" />
+
+    <button type="submit">Register</button>
+</EditForm>
+
+<p>@message</p>
+
+@code {
+    private RegistrationFormModel formData = new();
+    private string message = "";
+
+    private void HandleSubmit()
+    {
+        AppState.AddAttendee(formData.Name);
+        message = $"Thank you, {formData.Name}! You are registered.";
+    }
+
+    public class RegistrationFormModel
+    {
+        [Required, StringLength(50)]
+        public string Name { get; set; } = "";
+
+        [Required, EmailAddress]
+        public string Email { get; set; } = "";
+    }
+}

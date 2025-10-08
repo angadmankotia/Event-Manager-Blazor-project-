@@ -1,0 +1,29 @@
+@code {
+    [Parameter] public string EventName { get; set; } = string.Empty;
+    [Parameter] public string Description { get; set; } = string.Empty;
+    [Parameter] public DateTime EventDate { get; set; } = DateTime.Today;
+    [Parameter] public EventCallback<string> OnEventNameChanged { get; set; }
+
+    private void UpdateName(ChangeEventArgs e)
+    {
+        EventName = e.Value?.ToString() ?? "";
+        OnEventNameChanged.InvokeAsync(EventName);
+    }
+}
+
+<div class="card">
+    <h3>Edit Event Details</h3>
+    <input @bind="EventName" @onchange="UpdateName" placeholder="Event Name" />
+    <textarea @bind="Description" placeholder="Description"></textarea>
+    <input type="date" @bind="EventDate" />
+</div>
+
+<style>
+.card {
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 15px;
+    width: 300px;
+    margin: 10px;
+}
+</style>

@@ -1,0 +1,11 @@
+@page "/"
+<h2>Welcome to Event Manager</h2>
+
+<EventCard EventName="@eventName" Description="@desc" OnEventNameChanged="@((v)=> eventName=v)" />
+
+<p><strong>Event Preview:</strong> @eventName - @desc</p>
+
+@code {
+    private string eventName = "Tech Meetup 2025";
+    private string desc = "A networking event for developers.";
+}

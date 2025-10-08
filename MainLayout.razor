@@ -1,0 +1,26 @@
+@inherits LayoutComponentBase
+
+<nav class="nav-bar">
+    <a href="/">Home</a>
+    <a href="/register">Register</a>
+    <a href="/attendance">Attendance</a>
+</nav>
+
+<main class="content">
+    @Body
+</main>
+
+<style>
+.nav-bar {
+    background: #1976d2;
+    padding: 10px;
+}
+.nav-bar a {
+    color: white;
+    margin: 0 10px;
+    text-decoration: none;
+}
+.content {
+    margin: 20px;
+}
+</style>
